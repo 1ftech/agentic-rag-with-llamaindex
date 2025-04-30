@@ -1,38 +1,38 @@
-# Agentic-RAG-with-Llamaindex
+# Agentic-RAG-with-LlamaIndex
 
-This is my code and studynote for the course [Building Agentic RAG with LlamaIndex](https://www.deeplearning.ai/short-courses/building-agentic-rag-with-llamaindex/) 📚 A super informative and practical course. Highly recommended! 😎 
+This is my code and study overview for the project Building Agentic RAG with LlamaIndex.  
 
-# ✅ Lesson 1. Tools Calling using a Router Engine
+# ✅ Topic 1. Tools Calling using a Router Engine
 
-* In standard RAG, LLM are mainly used for synthesis of information only.
-* A router engine adds additional functionality which enables LLM to determine whether to implement a Q&A (vector search) or a summarization query engine/tool based on the question from the user
-* See `L1_Router_Engine` notebook & `get_router_query_engine()` function in `utils`
+* The primary role of LLM within standard RAG systems involves synthesizing information.
+* The router engine provides extra capabilities that allow LLM to choose between executing a Q&A functionality through vector search or using a summarization query engine depending on the user's input question.
+* See `Router_Engine` notebook & `get_router_query_engine()` function in `utils`
 
-# ✅ Lesson 2. Tool Calling & Infer Parameters
+# ✅ Topic 2. Tool Calling & Infer Parameters
 
-* In this interation, the LLM not only helps choosing the appropriate tool but also infer necessary arguments for execution. 
-* The end result is that users get to ask more questions and receive more preciese results. 
-* See `L2_Tool_Calling`notebook & `get_doc_tools()` function in `utils`
+* This LLM iteration provides guidance in tool selection while determining the required execution arguments. 
+* The final outcome enables users to pose more queries and obtain more precise responses.
+* See `Tool_Calling`notebook & `get_doc_tools()` function in `utils`
 
-# ✅ Lesson 3. Multi-steps Agent
+# ✅ Topic 3. Multi-steps Agent
 
-* Use AgentRunner to plan and orchestrate multi-step tasks 
+* AgentRunner allows users to organize and execute complex multi-step operations. 
 * Use AgentWorker to execute the tasks. 
 * Human users can 
-    * inspect and chat with the agent about its reasoning and responses 💭
-    * control the agent in a granular fashion, which also enhances debuggability and steerability of the agent. 🧭
+    * Conduct an examination of the agent's responses and engage in dialogue about its logical reasoning process.
+    * Users gain finer control over the agent while improving its debuggability and steerability capabilities.
 
-![Agent](image/agentRunner-and-agentWorker.PNG)
+![Agent](imaages/agentRunner-and-agentWorker.PNG)
 
-# ✅ Lesson 4. Handling multiple documents: RAG over the Tools
+# ✅ Topic 4. Handling multiple documents: RAG over the Tools
 
 * When handling query over multiple documents：
-    * we can create vector search and summary tools respectively for each document and feed them to the agent. 
-    * But when the amount of documents increases, this solution leads to higher cost and latency as there are now more tokens in our prompt. Further more, the outline can actually get confused and the LLM may fail to pick the right tools when there are too many choices. 🤨
+    * We should generate distinct vector search and summary tools for every document before delivering them to the agent. 
+    * The solution becomes more expensive and slower when processing large document volumes due to increased tokens in our prompt. The outline becomes confusing when there are numerous options and the LLM struggles to select suitable tools.
 
-* Therefore, let's create RAG over these tools instead. 😎 
-    * Create a retriever which can retrieve a small subset of tools based on their relevance to the query
-    * Then instead of passing all the tools to the agent, we pass the retriever to it 🐕‍🦺
-    * The retriever can leverage different retrieval techniques tailored to each use case. For example, it could be as simple as just picking the top 3 most similar tools to the query.
+* We should implement RAG across these tools as our next step. 
+    * Develop a retrieval system that finds a limited set of relevant tools according to the given query.
+    * We pass the retriever to the agent rather than forwarding all the tools.
+    * The retriever has the capability to adopt distinct retrieval methods that suit each particular use case. The retrieval method may involve just selecting the top three tools that closely match the query.
 
-![RAG over tools](image/RAG-over-tools.PNG)
+![RAG over tools](imaages/RAG-over-tools.PNG)
